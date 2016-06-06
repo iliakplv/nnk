@@ -28,6 +28,9 @@ fun main(argv: Array<String>) {
 
     log(1, "Running neural network nand()")
     nand()
+
+    log(1, "Running neural network implication()")
+    implication()
 }
 
 fun isOdd() {
@@ -79,6 +82,18 @@ fun nand() {
                 NetworkData.create(listOf(0, 1), listOf(1)),
                 NetworkData.create(listOf(1, 0), listOf(1)),
                 NetworkData.create(listOf(1, 1), listOf(0)))
+        train(trainingValues)
+        test(trainingValues)
+    }
+}
+
+fun implication() {
+    with(NeuralNetwork(inputSize = 2, hiddenSize = 2, outputSize = 1)) {
+        val trainingValues = listOf(
+                NetworkData.create(listOf(0, 0), listOf(1)),
+                NetworkData.create(listOf(0, 1), listOf(1)),
+                NetworkData.create(listOf(1, 0), listOf(0)),
+                NetworkData.create(listOf(1, 1), listOf(1)))
         train(trainingValues)
         test(trainingValues)
     }
